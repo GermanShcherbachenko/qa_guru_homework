@@ -14,6 +14,35 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class InitialTest {
 
+    File textFile = new File("src/test/java/echo/qa/resources/file.txt");
+
+    String url = "https://demoqa.com/automation-practice-form";
+
+    String name = "Николай";
+    String lastName = "Иванов";
+    String email = "randomEmail@gmail.com";
+    String phone = "9998887766";
+    String birthDate = "08 Jun 1989";
+    String subject = "Hindi";
+    String address = "Рандомная улица в случайном городе";
+    String state = "NCR";
+    String city = "Noida";
+
+    String header = ".main-header";
+    String firstNameField = "#firstName";
+    String lastNameField = "#lastName";
+    String userEmailField = "#userEmail";
+    String genderField = "Male";
+    String mobileNumberField = "#userNumber";
+    String dateOfBirthField = "#dateOfBirthInput";
+    String subjectsField = "#subjectsInput";
+    String hobbiesField = "Sports";
+    String pictureField = "#uploadPicture";
+    String currentAddressField = "#currentAddress";
+    String stateField = "#react-select-3-input";
+    String cityField = "#react-select-4-input";
+    String submitButton = "#submit";
+
     @BeforeAll
     static void beforeAll() {
         Configuration.browserSize = "1920x1080";
@@ -21,25 +50,25 @@ public class InitialTest {
 
     @Test
     void firstTest() {
-        open("https://demoqa.com/automation-practice-form");
-        $(".main-header").shouldHave(Condition.text("Practice Form"));
-        $("#firstName").setValue("Николай");
-        $("#lastName").setValue("Иванов");
-        $("#userEmail").setValue("randomEmail@gmail.com");
-        $(byText("Male")).click();
-        $("#userNumber").setValue("9998887766");
-        $("#dateOfBirthInput").sendKeys(Keys.CONTROL + "a");
-        $("#dateOfBirthInput").sendKeys("08 Jun 1989", Keys.ENTER);
-        $("#subjectsInput").sendKeys("Hindi");
-        $("#subjectsInput").pressEnter();
-        $(byText("Sports")).click();
-        $("#uploadPicture").uploadFile(new File("src/test/java/echo/qa/resources/file.txt"));
-        $("#currentAddress").setValue("Рандомная улица в случайном городе");
-        $("#react-select-3-input").sendKeys("NCR");
-        $("#react-select-3-input").pressEnter();
-        $("#react-select-4-input").sendKeys("Noida");
-        $("#react-select-4-input").pressEnter();
-        $("#submit").click();
+        open(url);
+        $(header).shouldHave(Condition.text("Practice Form"));
+        $(firstNameField).setValue(name);
+        $(lastNameField).setValue(lastName);
+        $(userEmailField).setValue(email);
+        $(byText(genderField)).click();
+        $(mobileNumberField).setValue(phone);
+        $(dateOfBirthField).sendKeys(Keys.CONTROL + "a");
+        $(dateOfBirthField).sendKeys(birthDate, Keys.ENTER);
+        $(subjectsField).sendKeys(subject);
+        $(subjectsField).pressEnter();
+        $(byText(hobbiesField)).click();
+        $(pictureField).uploadFile(textFile);
+        $(currentAddressField).setValue(address);
+        $(stateField).sendKeys(state);
+        $(stateField).pressEnter();
+        $(cityField).sendKeys(city);
+        $(cityField).pressEnter();
+        $(submitButton).click();
 
 
 
