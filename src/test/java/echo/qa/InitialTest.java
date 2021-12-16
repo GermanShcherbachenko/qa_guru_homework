@@ -2,7 +2,6 @@ package echo.qa;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
-import io.netty.util.concurrent.NonStickyEventExecutorGroup;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
@@ -42,6 +41,7 @@ public class InitialTest {
     String stateField = "#react-select-3-input";
     String cityField = "#react-select-4-input";
     String submitButton = "#submit";
+    String closeButton = "#closeLargeModal";
 
     @BeforeAll
     static void beforeAll() {
@@ -70,10 +70,18 @@ public class InitialTest {
         $(cityField).pressEnter();
         $(submitButton).click();
 
-
-
-
-
-
+        $("#example-modal-sizes-title-lg").shouldHave(Condition.text("Thanks for submitting the form"));
+        $x("//td[contains(., 'Student Name')]/following-sibling::td").shouldHave(Condition.text(name + " " + lastName));
+        $x("//td[contains(., 'Student Email')]/following-sibling::td").shouldHave(Condition.text(email));
+        $x("//td[contains(., 'Gender')]/following-sibling::td").shouldHave(Condition.text(genderField));
+        $x("//td[contains(., 'Mobile')]/following-sibling::td").shouldHave(Condition.text(phone));
+        $x("//td[contains(., 'Date of Birth')]/following-sibling::td").shouldHave(Condition.text("08 June,1989"));
+        $x("//td[contains(., 'Subjects')]/following-sibling::td").shouldHave(Condition.text(subject));
+        $x("//td[contains(., 'Hobbies')]/following-sibling::td").shouldHave(Condition.text(hobbiesField));
+        $x("//td[contains(., 'Picture')]/following-sibling::td").shouldHave(Condition.text("file.txt"));
+        $x("//td[contains(., 'Address')]/following-sibling::td").shouldHave(Condition.text(address));
+        $x("//td[contains(., 'State and City')]/following-sibling::td").shouldHave(Condition.text(state + " " + city));
+        $(closeButton).click();
+        $(subjectsField).shouldBe(Condition.empty);
     }
 }
