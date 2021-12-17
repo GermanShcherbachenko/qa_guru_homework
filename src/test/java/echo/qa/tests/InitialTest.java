@@ -1,4 +1,4 @@
-package echo.qa;
+package echo.qa.tests;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class InitialTest {
 
-    File textFile = new File("src/test/java/echo/qa/resources/file.txt");
+    File textFile = new File("src/test/resources/file.txt");
 
     String url = "https://demoqa.com/automation-practice-form";
 
@@ -59,15 +59,12 @@ public class InitialTest {
         $(mobileNumberField).setValue(phone);
         $(dateOfBirthField).sendKeys(Keys.CONTROL + "a");
         $(dateOfBirthField).sendKeys(birthDate, Keys.ENTER);
-        $(subjectsField).sendKeys(subject);
-        $(subjectsField).pressEnter();
+        $(subjectsField).setValue(subject).pressEnter();
         $(byText(hobbiesField)).click();
         $(pictureField).uploadFile(textFile);
         $(currentAddressField).setValue(address);
-        $(stateField).sendKeys(state);
-        $(stateField).pressEnter();
-        $(cityField).sendKeys(city);
-        $(cityField).pressEnter();
+        $(stateField).setValue(state).pressEnter();
+        $(cityField).setValue(city).pressEnter();
         $(submitButton).click();
 
         $("#example-modal-sizes-title-lg").shouldHave(Condition.text("Thanks for submitting the form"));
