@@ -55,10 +55,12 @@ public class InitialTest {
         $(firstNameField).setValue(name);
         $(lastNameField).setValue(lastName);
         $(userEmailField).setValue(email);
-        $(byText(genderField)).click();
+        $("#genterWrapper").$(byText(genderField)).click();
         $(mobileNumberField).setValue(phone);
-        $(dateOfBirthField).sendKeys(Keys.CONTROL + "a");
-        $(dateOfBirthField).sendKeys(birthDate, Keys.ENTER);
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__month-select").selectOption("July");
+        $(".react-datepicker__year-select").selectOption("1989");
+        $("[aria-label$='July 8th, 1989']").click();
         $(subjectsField).setValue(subject).pressEnter();
         $(byText(hobbiesField)).click();
         $(pictureField).uploadFile(textFile);
@@ -72,7 +74,7 @@ public class InitialTest {
         $x("//td[contains(., 'Student Email')]/following-sibling::td").shouldHave(Condition.text(email));
         $x("//td[contains(., 'Gender')]/following-sibling::td").shouldHave(Condition.text(genderField));
         $x("//td[contains(., 'Mobile')]/following-sibling::td").shouldHave(Condition.text(phone));
-        $x("//td[contains(., 'Date of Birth')]/following-sibling::td").shouldHave(Condition.text("08 June,1989"));
+        $x("//td[contains(., 'Date of Birth')]/following-sibling::td").shouldHave(Condition.text("08 July,1989"));
         $x("//td[contains(., 'Subjects')]/following-sibling::td").shouldHave(Condition.text(subject));
         $x("//td[contains(., 'Hobbies')]/following-sibling::td").shouldHave(Condition.text(hobbiesField));
         $x("//td[contains(., 'Picture')]/following-sibling::td").shouldHave(Condition.text("file.txt"));
