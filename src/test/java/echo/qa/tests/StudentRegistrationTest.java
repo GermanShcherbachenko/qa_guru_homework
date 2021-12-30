@@ -4,18 +4,17 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Keys;
 
 import java.io.File;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class InitialTest {
+public class StudentRegistrationTest {
 
     File textFile = new File("src/test/resources/file.txt");
 
-    String url = "https://demoqa.com/automation-practice-form";
+//    String url = "/automation-practice-form";
 
     String name = "Николай";
     String lastName = "Иванов";
@@ -27,10 +26,10 @@ public class InitialTest {
     String state = "NCR";
     String city = "Noida";
 
-    String header = ".main-header";
+//    String header = ".main-header";
     String firstNameField = "#firstName";
-    String lastNameField = "#lastName";
-    String userEmailField = "#userEmail";
+//    String lastNameField = "#lastName";
+//    String userEmailField = "#userEmail";
     String genderField = "Male";
     String mobileNumberField = "#userNumber";
     String dateOfBirthField = "#dateOfBirthInput";
@@ -46,15 +45,16 @@ public class InitialTest {
     @BeforeAll
     static void beforeAll() {
         Configuration.browserSize = "1920x1080";
+        Configuration.baseUrl = "https://demoqa.com";
     }
 
     @Test
     void firstTest() {
-        open(url);
-        $(header).shouldHave(Condition.text("Practice Form"));
+//        open(url);
+//        $(header).shouldHave(Condition.text("Practice Form"));
         $(firstNameField).setValue(name);
-        $(lastNameField).setValue(lastName);
-        $(userEmailField).setValue(email);
+//        $(lastNameField).setValue(lastName);
+//        $(userEmailField).setValue(email);
         $("#genterWrapper").$(byText(genderField)).click();
         $(mobileNumberField).setValue(phone);
         $("#dateOfBirthInput").click();
